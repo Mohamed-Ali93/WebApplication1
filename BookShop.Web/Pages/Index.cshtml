@@ -1,0 +1,65 @@
+@page
+@model BookShop.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "Welcome";
+}
+
+<div class="container py-5">
+    <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+            <h1 class="display-4 fw-bold mb-3">Welcome to BookShop</h1>
+            <p class="lead mb-4">Discover our carefully curated collection of books. From classics to contemporary bestsellers, find your next great read with us.</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <a asp-page="/Books" class="btn btn-primary btn-lg px-4 me-md-2">
+                    <i class="bi bi-collection me-2"></i>Browse Books
+                </a>
+                <button type="button" class="btn btn-outline-secondary btn-lg px-4">
+                    <i class="bi bi-search me-2"></i>Search
+                </button>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="p-4 bg-light rounded-3 shadow-sm">
+                <h2 class="h4 mb-3">Featured Categories</h2>
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="d-flex align-items-center p-3 bg-white rounded">
+                            <i class="bi bi-book text-primary fs-4 me-3"></i>
+                            <div>
+                                <h6 class="mb-0">Fiction</h6>
+                                <small class="text-muted">Classic & Modern</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex align-items-center p-3 bg-white rounded">
+                            <i class="bi bi-lightbulb text-warning fs-4 me-3"></i>
+                            <div>
+                                <h6 class="mb-0">Non-Fiction</h6>
+                                <small class="text-muted">Learn & Grow</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex align-items-center p-3 bg-white rounded">
+                            <i class="bi bi-code-square text-success fs-4 me-3"></i>
+                            <div>
+                                <h6 class="mb-0">Technology</h6>
+                                <small class="text-muted">Digital World</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex align-items-center p-3 bg-white rounded">
+                            <i class="bi bi-journal-text text-info fs-4 me-3"></i>
+                            <div>
+                                <h6 class="mb-0">Academic</h6>
+                                <small class="text-muted">Study Materials</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

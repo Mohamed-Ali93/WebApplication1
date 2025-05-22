@@ -1,0 +1,22 @@
+@page
+@model BooksModel
+
+<h1>Books</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model.Books)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+            </tr>
+        }
+    </tbody>
+</table>
