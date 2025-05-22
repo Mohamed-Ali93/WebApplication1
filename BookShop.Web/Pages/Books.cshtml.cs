@@ -15,6 +15,9 @@ namespace BookShop.Web.Pages
         [BindProperty]
         public Book NewBook { get; set; } = new();
 
+        [BindProperty]
+        public Book EditBook { get; set; } = new();
+
         public IEnumerable<Book> Books { get; set; } = new List<Book>();
 
         public BooksModel(BookService bookService, ILogger<BooksModel> logger)
@@ -59,6 +62,58 @@ namespace BookShop.Web.Pages
                 Books = await _bookService.GetAllBooks();
                 return Page();
             }
+        }
+
+        public async Task<IActionResult> OnPostEditAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            try
+            {
+                _logger.LogInformation($"Updating book: {EditBook.Title}");
+                await _bookService.UpdateBook(EditBook);
+                _logger.LogInformation("Book updated successfully");
+                return RedirectToPage();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while updating the book");
+                ModelState.AddModelError("", "An error occurred while updating the book. Please try again.");
+                Books = await _bookService.GetAllBooks();
+                return Page();
+            }
+        }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            try
+            {
+                _logger.LogInformation($"Deleting book with ID: {id}");
+                await _bookService.DeleteBook(id);
+                _logger.LogInformation("Book deleted successfully");
+                return RedirectToPage();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while deleting the book");
+                ModelState.AddModelError("", "An error occurred while deleting the book. Please try again.");
+                Books = await _bookService.GetAllBooks();
+                return Page();
+            }
+        }
+
+        public async Task<IActionResult> OnGetEditAsync(int id)
+        {
+            var book = await _bookService.GetBookById(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+            EditBook = book;
+            return Partial("_EditBookPartial", EditBook);
         }
     }
 }
